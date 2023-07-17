@@ -1,0 +1,26 @@
+
+<select class="form-select form-select-sm mb-3" [(ngModel)]="selectedCategory" (ngModelChange)="loadBooks()">
+    <option value="">All Categories</option>
+    <option *ngFor="let category of categories$ | async" [value]="category">{{ category }}</option>
+  </select>
+    <ng-container *ngIf="booklist$ | async as booklist; else emptylist">
+        <app-book-list [books]="booklist.data" ></app-book-list>
+        <nav>
+            <ul class="pagination">
+            <li class="page-item" *ngIf="page > 1">
+                <a class="page-link" (click)="$event.preventDefault(); getPage(1)" >First</a>
+            </li>
+            <li class="page-item" *ngIf="page > 1">
+                <a class="page-link" (click)="$event.preventDefault(); prev()" >Previ</a>
+            </li>
+            <li *ngFor="let p of visiblePages(booklist.totalPageCount)" class="page-item" [class.active]="page === p">
+                <a href="" (click)="$event.preventDefault(); getPage(p)" class="page-link">{{p}}</a></li>
+            <li class="page-item">
+                <a class="page-link" href [class.disabled]="page === booklist.totalPageCount" (click)="$event.preventDefault(); next()">Next</a>
+            </li>
+            </ul>
+        </nav>
+    </ng-container>
+    <ng-template #emptylist>
+        Dont have any book yet
+    </ng-template>

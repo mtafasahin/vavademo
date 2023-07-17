@@ -1,0 +1,29 @@
+
+<a href="#" [routerLink]="['/books']" class="link-primary">Book List</a>
+
+<div *ngIf="book; else bookNotFound" class="h-100" [routerLink]="['/books', book.id]">
+    <div class="">
+        <h5 >{{book.title}}</h5>
+      <img [src]="book.coverImageUrl" alt="Card image cap">
+      <div>
+       
+        
+         <span class="crop-text-1">Author: {{book.author}}
+        </span>
+
+        
+      
+      <div class="card-footer">
+       
+          Cagegory: <span>{{book.category}}</span>
+      </div>
+      
+      </div>
+    </div>
+    <h5>About Book</h5>
+    <p>{{book.description}} {{book.description}} {{book.description}} {{book.description}}</p>
+  </div>
+
+  <ng-template #bookNotFound>
+    Book Not Found
+  </ng-template>

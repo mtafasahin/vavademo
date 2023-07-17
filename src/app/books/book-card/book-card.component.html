@@ -1,0 +1,17 @@
+
+<div class="h-100" [routerLink]="['/books', book.id]">
+  <div class="card">
+    <img class="card-img-top" [src]="book.coverImageUrl" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title crop-text-2">{{book.title}}</h5>
+      
+        <span class="crop-text-1">{{book.author}}</span>
+   
+    
+    <div class="card-footer">
+        <span>{{book.category}}</span>
+    </div>
+
+    </div>
+  </div>
+</div>
